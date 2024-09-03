@@ -23,21 +23,19 @@ public class Bibliotheque {
     }
 
     public void ajouterDocument(Document document) {
-        // Automatically assign a unique ID based on the document type
         if (document instanceof Livre) {
             String id = getNextLivreId();
             document.setId(id);
-            document.setDatePublication(LocalDate.now());
         } else if (document instanceof Magazine) {
             String id = getNextMagazineId();
             document.setId(id);
-            document.setDatePublication(LocalDate.now());
         }
 
         documents.add(document);
         documentMap.put(document.getId(), document);
     }
 
+    
     public void emprunterDocument(String id) {
         Document document = documentMap.get(id);
         if (document != null) {
@@ -56,14 +54,31 @@ public class Bibliotheque {
         }
     }
 
-    public void afficherTousLesDocuments() {
-        documents.forEach(Document::afficherDetails);
-    }
-
     public void afficherDocumentsParCondition(Predicate<Document> condition) {
         documents.stream()
                 .filter(condition)
                 .forEach(Document::afficherDetails);
+    }
+
+    public void afficherTousLesDocuments() {
+        System.out.println("=== Liste de tous les documents ===");
+        System.out.println();
+
+        System.out.println("Livres :");
+        documents.stream()
+                 .filter(doc -> doc instanceof Livre)
+                 .forEach(doc -> {
+                     doc.afficherDetails();
+                     System.out.println();
+                 });
+
+        System.out.println("Magazines :");
+        documents.stream()
+                 .filter(doc -> doc instanceof Magazine)
+                 .forEach(doc -> {
+                     doc.afficherDetails();
+                     System.out.println();
+                 });
     }
 
     public Document rechercherDocument(String critere) {

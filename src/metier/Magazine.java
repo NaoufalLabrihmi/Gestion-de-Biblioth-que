@@ -1,34 +1,39 @@
 package metier;
 
 import java.time.LocalDate;
+import utilitaire.DateUtils;
 
 public class Magazine extends Document {
-    private String numero;
+    private int  numero;
 
     public Magazine(String id, String titre, String auteur, LocalDate datePublication, int nombreDePages,
-            String numero) {
+            int numero) {
         super(id, titre, auteur, datePublication, nombreDePages);
         this.numero = numero;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
     @Override
     public void afficherDetails() {
-        System.out.println("Magazine [ID=" + getId() +
-                ", Titre=" + getTitre() +
-                ", Auteur=" + getAuteur() +
-                ", Date de Publication=" + getDatePublication() +
-                ", Nombre de Pages=" + getNombreDePages() +
-                ", Numéro=" + numero +
-                ", Emprunté=" + (isEmprunte() ? "Oui" : "Non") + "]");
+    System.out.println("Détails du Magazine :");
+    System.out.println("----------------------");
+    System.out.println("ID                   : " + getId());
+    System.out.println("Titre                : " + getTitre());
+    System.out.println("Auteur               : " + getAuteur());
+    System.out.println("Date de Publication  : " + DateUtils.formatDate(getDatePublication()));
+    System.out.println("Nombre de Pages      : " + getNombreDePages());
+    System.out.println("Numéro               : " + numero);
+    System.out.println("Emprunté             : " + (isEmprunte() ? "Oui" : "Non"));
+    System.out.println("----------------------");
     }
+
 
     @Override
     public void emprunter() {

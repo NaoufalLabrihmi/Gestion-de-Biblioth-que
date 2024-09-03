@@ -1,6 +1,7 @@
 package metier;
 
 import java.time.LocalDate;
+import utilitaire.DateUtils;
 
 public class Livre extends Document {
     private String isbn;
@@ -16,10 +17,18 @@ public class Livre extends Document {
 
     @Override
     public void afficherDetails() {
-        System.out.println("Livre [ID=" + getId() + ", Titre=" + getTitre() + ", Auteur=" + getAuteur() +
-                ", Date de Publication=" + getDatePublication() + ", Nombre de Pages=" + getNombreDePages() +
-                ", ISBN=" + isbn + ", Emprunté=" + (isEmprunte() ? "Oui" : "Non") + "]");
+    System.out.println("Détails du Livre :");
+    System.out.println("----------------------");
+    System.out.println("ID                   : " + getId());
+    System.out.println("Titre                : " + getTitre());
+    System.out.println("Auteur               : " + getAuteur());
+    System.out.println("Date de Publication  : " + DateUtils.formatDate(getDatePublication()));
+    System.out.println("Nombre de Pages      : " + getNombreDePages());
+    System.out.println("ISBN                 : " + (this instanceof Livre ? ((Livre) this).getIsbn() : "N/A"));
+    System.out.println("Emprunté             : " + (isEmprunte() ? "Oui" : "Non"));
+    System.out.println("----------------------");
     }
+
 
     @Override
     public void emprunter() {

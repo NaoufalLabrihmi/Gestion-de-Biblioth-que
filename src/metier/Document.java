@@ -3,12 +3,12 @@ package metier;
 import java.time.LocalDate;
 
 public abstract class Document {
-    private String id;
-    private String titre;
-    private String auteur;
-    private LocalDate datePublication;
-    private int nombreDePages;
-    private boolean estEmprunte;
+    protected  String id;
+    protected String titre;
+    protected String auteur;
+    protected LocalDate datePublication;
+    protected int nombreDePages;
+    protected boolean estEmprunte;
 
     public Document(String id, String titre, String auteur, LocalDate datePublication, int nombreDePages) {
         this.id = id;
